@@ -5,7 +5,10 @@
   "version": "0.1.0",
   "publisher": "kode-lang",
   "author": {
-    "name": "Kode Language Project"
+    "name": "Ecocee",
+    "email": "info@ecocee.in",
+    "url": "https://ecocee.in",
+    "github": "https://github.com/ecocee"
   },
   "license": "MIT",
   "icon": "icons/icon128.svg",
@@ -13,13 +16,13 @@
     "color": "#7c3aed",
     "theme": "dark"
   },
-  "homepage": "https://github.com/ecocee/kode",
+  "homepage": "https://github.com/ecocee/kode-lsp",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ecocee/kode"
+    "url": "https://github.com/ecocee/kode-lsp.git"
   },
   "bugs": {
-    "url": "https://github.com/ecocee/kode/issues"
+    "url": "https://github.com/ecocee/kode-lsp/issues"
   },
   "engines": {
     "vscode": "^1.75.0"
