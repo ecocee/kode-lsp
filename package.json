@@ -11,7 +11,6 @@
     "github": "https://github.com/ecocee"
   },
   "license": "MIT",
-  "icon": "icons/icon128.svg",
   "galleryBanner": {
     "color": "#7c3aed",
     "theme": "dark"
