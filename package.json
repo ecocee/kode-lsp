@@ -1,9 +1,10 @@
 {
   "name": "kode",
-  "displayName": "Kode Language",
+  "displayName": "Kode",
   "description": "Professional language support for Kode - modern, fast, and expressive programming language with syntax highlighting, snippets, and advanced features",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "ECOCEE",
+  "icon": "icons/logo.png",
   "author": {
     "name": "Ecocee",
     "email": "info@ecocee.in",
