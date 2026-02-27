@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 140" width="500" height="140">
+  <!-- Gradient background -->
+  <defs>
+    <linearGradient id="bannerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#581c87;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="500" height="140" fill="url(#bannerGrad)"/>
+  
+  <!-- Accent bars -->
+  <rect x="0" y="0" width="500" height="4" fill="#a78bfa"/>
+  <rect x="0" y="136" width="500" height="4" fill="#9333ea"/>
+  
+  <!-- Code-like pattern -->
+  <g fill="#a78bfa" opacity="0.3">
+    <circle cx="30" cy="30" r="8"/>
+    <circle cx="70" cy="50" r="8"/>
+    <circle cx="50" cy="80" r="8"/>
+    <circle cx="100" cy="100" r="8"/>
+    <circle cx="450" cy="40" r="8"/>
+    <circle cx="420" cy="90" r="8"/>
+    <circle cx="470" cy="110" r="8"/>
+  </g>
+  
+  <!-- Text section -->
+  <text x="20" y="50" font-family="'Segoe UI', sans-serif" font-size="32" font-weight="bold" fill="#ffffff">
+    Kode Language
+  </text>
+  <text x="20" y="85" font-family="'Segoe UI', sans-serif" font-size="16" fill="#f3e8ff">
+    Modern, Fast, and Expressive Programming Language Support
+  </text>
+  
+  <!-- Accent graphic -->
+  <g transform="translate(420, 50)" opacity="0.8">
+    <path d="M 0 10 L 10 0 L 20 10 L 10 20 Z" fill="#a78bfa" stroke="#ddd6fe" stroke-width="1"/>
+    <path d="M -5 30 L 5 20 L 15 30 L 5 40 Z" fill="#7c3aed" stroke="#c4b5fd" stroke-width="1"/>
+  </g>
+</svg>

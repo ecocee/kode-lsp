@@ -1,0 +1,94 @@
+{
+  "name": "kode",
+  "displayName": "Kode Language",
+  "description": "Professional language support for Kode - modern, fast, and expressive programming language with syntax highlighting, snippets, and advanced features",
+  "version": "0.1.0",
+  "publisher": "kode-lang",
+  "author": {
+    "name": "Kode Language Project"
+  },
+  "license": "MIT",
+  "icon": "icons/icon128.svg",
+  "galleryBanner": {
+    "color": "#7c3aed",
+    "theme": "dark"
+  },
+  "homepage": "https://github.com/ecocee/kode",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ecocee/kode"
+  },
+  "bugs": {
+    "url": "https://github.com/ecocee/kode/issues"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Formatters"
+  ],
+  "keywords": [
+    "kode",
+    "programming",
+    "language",
+    "syntax",
+    "modern",
+    "systems",
+    "concurrency",
+    "functional"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "kode",
+        "aliases": [
+          "Kode",
+          "kode"
+        ],
+        "extensions": [
+          ".kode",
+          ".kbc"
+        ],
+        "configuration": "./language-configuration.json",
+        "firstLine": "^#!/usr/bin/env kode",
+        "icon": {
+          "light": "./icons/kode-language-icon.svg",
+          "dark": "./icons/kode-language-icon.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "kode",
+        "scopeName": "app.kode",
+        "path": "./syntaxes/kode.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "kode",
+        "path": "./snippets/kode.json"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "kode-icons",
+        "label": "Kode Icons",
+        "path": "./icons/file-icons.json"
+      }
+    ],
+    "themes": [
+      {
+        "id": "kode-style",
+        "label": "Kode Style",
+        "uiTheme": "vs-dark",
+        "path": "./themes/kode-style.json"
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node ./test/index.js"
+  }
+}

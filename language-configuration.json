@@ -1,0 +1,57 @@
+{
+    "comments": {
+        "lineComment": "//",
+        "blockComment": ["/*", "*/"]
+    },
+    "brackets": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["<", ">"]
+    ],
+    "autoClosingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["<", ">"],
+        ["\"", "\""],
+        ["'", "'"],
+        ["`", "`"]
+    ],
+    "surroundingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["<", ">"],
+        ["\"", "\""],
+        ["'", "'"],
+        ["`", "`"]
+    ],
+    "folding": {
+        "markers": {
+            "start": "^\\s*//\\s*#?region",
+            "end": "^\\s*//\\s*#?endregion"
+        }
+    },
+    "wordPattern": "(-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\$\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\'\\\"\\,\\.\\<\\>\\/\\?\\s]+)",
+    "indentationRules": {
+        "increaseIndentPattern": "^\\s*(pub\\s+)?(async\\s+)?(fn|if|else|while|for|do|match|struct|enum|impl|trait|let|const|try)\\b.*[\\{\\[]\\s*$|^\\s*[\\{\\[].*[\\{\\[]\\s*$",
+        "decreaseIndentPattern": "^\\s*[\\}\\]]"
+    },
+    "onEnterRules": [
+        {
+            "beforeText": "^\\s*(?:pub\\s+)?(async\\s+)?(fn|if|else|while|for|do|match|struct|enum|impl|trait).*[\\{]\\s*$",
+            "afterText": "^\\s*[\\}]",
+            "action": {
+                "indent": "indent"
+            }
+        },
+        {
+            "beforeText": "^\\s*\\/\\*",
+            "afterText": "\\*\\/",
+            "action": {
+                "indent": "indent"
+            }
+        }
+    ]
+}

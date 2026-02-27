@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "iconDefinitions": {
+    "kode-file": {
+      "iconPath": "./kode-file-icon.svg"
+    },
+    "kode-file-light": {
+      "iconPath": "./kode-file-icon.svg"
+    }
+  },
+  "fileExtensions": {
+    "kode": "kode-file",
+    "kbc": "kode-file"
+  },
+  "fileNames": {
+    "main.kode": "kode-file",
+    ".kode-version": "kode-file"
+  },
+  "languageIds": {
+    "kode": "kode-file"
+  },
+  "light": {
+    "fileExtensions": {
+      "kode": "kode-file-light",
+      "kbc": "kode-file-light"
+    }
+  },
+  "highContrast": {
+    "fileExtensions": {
+      "kode": "kode-file",
+      "kbc": "kode-file"
+    }
+  }
+}
