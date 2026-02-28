@@ -1,0 +1,27 @@
+// Variables and Basic Operations
+// This example demonstrates variable declaration and basic operations
+
+func greet(person: String) -> String {
+    return "Welcome, " + person;
+}
+
+func main() {
+    let name = "Kode";
+    let version = 1.0;
+    let isActive = true;
+    
+    let message = greet("Developer");
+    print(message);
+    
+    // Arrays
+    let numbers = [1, 2, 3, 4, 5];
+    let sum = 0;
+    
+    for num in numbers {
+        sum = sum + num;
+    }
+    
+    print("Sum: " + sum);
+}
+
+main();

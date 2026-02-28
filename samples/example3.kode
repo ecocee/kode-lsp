@@ -1,0 +1,39 @@
+// Control Flow and Conditional Logic
+// This example shows if-else statements, loops, and conditions
+
+func checkGrade(score: Int) -> String {
+    if (score >= 90) {
+        return "A";
+    } else if (score >= 80) {
+        return "B";
+    } else if (score >= 70) {
+        return "C";
+    } else if (score >= 60) {
+        return "D";
+    } else {
+        return "F";
+    }
+}
+
+func main() {
+    let studentGrade = checkGrade(85);
+    print("Grade: " + studentGrade);
+    
+    // While loop
+    let count = 0;
+    while (count < 5) {
+        print("Count: " + count);
+        count = count + 1;
+    }
+    
+    // Pattern matching
+    let value = 3;
+    match value {
+        1 => print("One"),
+        2 => print("Two"),
+        3 => print("Three"),
+        _ => print("Other")
+    }
+}
+
+main();

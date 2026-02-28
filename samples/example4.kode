@@ -1,0 +1,39 @@
+// Functions and Advanced Features
+// This example demonstrates function definitions, parameters, and return types
+
+/// Calculate factorial of a number
+func factorial(n: Int) -> Int {
+    if (n <= 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+/// Find maximum value in array
+func findMax(arr: [Int]) -> Int {
+    let max = arr[0];
+    for num in arr {
+        if (num > max) {
+            max = num;
+        }
+    }
+    return max;
+}
+
+/// Process multiple values
+func processValues(values: [Int]) {
+    for val in values {
+        let factVal = factorial(val);
+        print("Factorial of " + val + " is " + factVal);
+    }
+}
+
+func main() {
+    let numbers = [3, 4, 5];
+    processValues(numbers);
+    
+    let maxNum = findMax(numbers);
+    print("Maximum number: " + maxNum);
+}
+
+main();

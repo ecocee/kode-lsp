@@ -65,7 +65,7 @@
     "grammars": [
       {
         "language": "kode",
-        "scopeName": "app.kode",
+        "scopeName": "source.kode",
         "path": "./syntaxes/kode.tmLanguage.json"
       }
     ],

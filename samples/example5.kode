@@ -1,0 +1,40 @@
+// Data Structures and Collections
+// This example shows working with complex data types
+
+struct Person {
+    name: String,
+    age: Int,
+    email: String
+}
+
+func createPerson(name: String, age: Int, email: String) -> Person {
+    return Person {
+        name: name,
+        age: age,
+        email: email
+    };
+}
+
+func displayPerson(person: Person) {
+    print("Name: " + person.name);
+    print("Age: " + person.age);
+    print("Email: " + person.email);
+}
+
+func main() {
+    // Create and display people
+    let person1 = createPerson("Alice", 28, "alice@example.com");
+    let person2 = createPerson("Bob", 32, "bob@example.com");
+    
+    displayPerson(person1);
+    print("---");
+    displayPerson(person2);
+    
+    // Collections
+    let people = [person1, person2];
+    for person in people {
+        print("Person: " + person.name);
+    }
+}
+
+main();

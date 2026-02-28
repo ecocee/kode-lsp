@@ -1,0 +1,14 @@
+// Hello World in Kode
+
+func main() {
+    print("Hello, Kode!");
+    
+    let x = 10;
+    let y = 20;
+    
+    if (x < y) {
+        print("x is smaller");
+    }
+}
+
+main();
