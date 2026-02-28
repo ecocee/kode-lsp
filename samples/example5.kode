@@ -1,40 +1,71 @@
-// Data Structures and Collections
-// This example shows working with complex data types
+// Real-World Example: Social Media Post Comment System
+// Manage posts, comments, likes, and user interactions
 
-struct Person {
-    name: String,
-    age: Int,
-    email: String
+struct Comment {
+    author: String,
+    content: String,
+    likes: Int
 }
 
-func createPerson(name: String, age: Int, email: String) -> Person {
-    return Person {
-        name: name,
-        age: age,
-        email: email
-    };
+struct Post {
+    postId: String,
+    author: String,
+    content: String,
+    likes: Int,
+    comments: [Comment]
 }
 
-func displayPerson(person: Person) {
-    print("Name: " + person.name);
-    print("Age: " + person.age);
-    print("Email: " + person.email);
+func addComment(post: Post, author: String, content: String) -> Post {
+    let newComment = Comment { author: author, content: content, likes: 0 };
+    post.comments = post.comments + [newComment];
+    print(author + " commented on the post");
+    return post;
+}
+
+func likePost(post: Post) -> Post {
+    post.likes = post.likes + 1;
+    return post;
+}
+
+func likeComment(post: Post, commentIndex: Int) -> Post {
+    post.comments[commentIndex].likes = post.comments[commentIndex].likes + 1;
+    return post;
+}
+
+func displayPost(post: Post) {
+    print("\n=== POST ===");
+    print("Author: " + post.author);
+    print("Content: " + post.content);
+    print("Likes: " + post.likes);
+    print("\nComments (" + post.comments.length + ")");
+    
+    for comment in post.comments {
+        print("  - " + comment.author + ": " + comment.content + " (" + comment.likes + " likes)");
+    }
 }
 
 func main() {
-    // Create and display people
-    let person1 = createPerson("Alice", 28, "alice@example.com");
-    let person2 = createPerson("Bob", 32, "bob@example.com");
+    let post = Post {
+        postId: "POST_001",
+        author: "Tech News Daily",
+        content: "Excited to announce Kode language v2.0 with amazing features!",
+        likes: 0,
+        comments: []
+    };
     
-    displayPerson(person1);
-    print("---");
-    displayPerson(person2);
+    post = likePost(post);
+    post = likePost(post);
+    post = likePost(post);
     
-    // Collections
-    let people = [person1, person2];
-    for person in people {
-        print("Person: " + person.name);
-    }
+    post = addComment(post, "Alice Dev", "This looks amazing!");
+    post = addComment(post, "Bob Coder", "Can't wait to try it!");
+    post = addComment(post, "Carol Engineer", "Best update ever!");
+    
+    post = likeComment(post, 0);
+    post = likeComment(post, 0);
+    post = likeComment(post, 1);
+    
+    displayPost(post);
 }
 
 main();

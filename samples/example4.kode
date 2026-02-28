@@ -1,39 +1,63 @@
-// Functions and Advanced Features
-// This example demonstrates function definitions, parameters, and return types
+// Real-World Example: Inventory Management System
+// Track product stock, sell items, and generate reports
 
-/// Calculate factorial of a number
-func factorial(n: Int) -> Int {
-    if (n <= 1) {
-        return 1;
-    }
-    return n * factorial(n - 1);
+struct InventoryItem {
+    productId: String,
+    productName: String,
+    quantity: Int,
+    unitPrice: Float,
+    minThreshold: Int
 }
 
-/// Find maximum value in array
-func findMax(arr: [Int]) -> Int {
-    let max = arr[0];
-    for num in arr {
-        if (num > max) {
-            max = num;
+func sellItem(item: InventoryItem, quantity: Int) -> InventoryItem {
+    if (item.quantity >= quantity) {
+        item.quantity = item.quantity - quantity;
+        print("Sold " + quantity + " units of " + item.productName);
+    } else {
+        print("Error: Not enough stock for " + item.productName);
+    }
+    return item;
+}
+
+func restock(item: InventoryItem, quantity: Int) -> InventoryItem {
+    item.quantity = item.quantity + quantity;
+    print("Restocked " + quantity + " units of " + item.productName);
+    return item;
+}
+
+func checkLowStock(inventory: [InventoryItem]) {
+    print("\n=== LOW STOCK ALERT ===");
+    for item in inventory {
+        if (item.quantity < item.minThreshold) {
+            print("WARNING: " + item.productName + " is low! Current: " + item.quantity + " (Min: " + item.minThreshold + ")");
         }
     }
-    return max;
 }
 
-/// Process multiple values
-func processValues(values: [Int]) {
-    for val in values {
-        let factVal = factorial(val);
-        print("Factorial of " + val + " is " + factVal);
+func generateReport(inventory: [InventoryItem]) {
+    print("\n=== INVENTORY REPORT ===");
+    let totalValue = 0.0;
+    for item in inventory {
+        let itemValue = item.quantity * item.unitPrice;
+        totalValue = totalValue + itemValue;
+        print(item.productName + ": " + item.quantity + " units @ $" + item.unitPrice + " = $" + itemValue);
     }
+    print("Total Inventory Value: $" + totalValue);
 }
 
 func main() {
-    let numbers = [3, 4, 5];
-    processValues(numbers);
+    let inventory = [
+        InventoryItem { productId: "P001", productName: "Smartphone", quantity: 15, unitPrice: 399.99, minThreshold: 10 },
+        InventoryItem { productId: "P002", productName: "Tablet", quantity: 8, unitPrice: 299.99, minThreshold: 10 },
+        InventoryItem { productId: "P003", productName: "Charger", quantity: 45, unitPrice: 29.99, minThreshold: 20 }
+    ];
     
-    let maxNum = findMax(numbers);
-    print("Maximum number: " + maxNum);
+    inventory[0] = sellItem(inventory[0], 5);
+    inventory[1] = restock(inventory[1], 12);
+    inventory[2] = sellItem(inventory[2], 30);
+    
+    checkLowStock(inventory);
+    generateReport(inventory);
 }
 
 main();
