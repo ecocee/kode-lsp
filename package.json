@@ -2,7 +2,7 @@
   "name": "kode",
   "displayName": "Kode",
   "description": "Language support for the Kode programming language — syntax highlighting, snippets, bracket matching, folding, and smart indentation.",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "publisher": "ecocee",
   "icon": "icons/logo.png",
   "author": {
