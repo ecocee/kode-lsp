@@ -1,61 +1,49 @@
 {
   "name": "kode",
   "displayName": "Kode",
-  "description": "Professional language support for Kode - modern, fast, and expressive programming language with syntax highlighting, snippets, and advanced features",
-  "version": "0.1.1",
-  "publisher": "ECOCEE",
+  "description": "Language support for the Kode programming language — syntax highlighting, snippets, bracket matching, folding, and smart indentation.",
+  "version": "0.1.4",
+  "publisher": "ecocee",
   "icon": "icons/logo.png",
   "author": {
-    "name": "Ecocee",
-    "email": "info@ecocee.in",
-    "url": "https://ecocee.in",
-    "github": "https://github.com/ecocee"
+    "name": "Ecocee"
   },
   "license": "MIT",
-  "galleryBanner": {
-    "color": "#7c3aed",
-    "theme": "dark"
-  },
-  "homepage": "https://github.com/ecocee/kode-lsp",
+  "homepage": "https://github.com/ecocee/kode",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ecocee/kode-lsp.git"
+    "url": "https://github.com/ecocee/kode.git"
   },
   "bugs": {
-    "url": "https://github.com/ecocee/kode-lsp/issues"
+    "url": "https://github.com/ecocee/kode/issues"
   },
   "engines": {
     "vscode": "^1.75.0"
   },
   "categories": [
     "Programming Languages",
-    "Snippets",
-    "Formatters"
+    "Snippets"
   ],
   "keywords": [
     "kode",
     "programming",
     "language",
     "syntax",
-    "modern",
-    "systems",
-    "concurrency",
-    "functional"
+    "systems"
   ],
   "contributes": {
     "languages": [
       {
         "id": "kode",
         "aliases": [
-          "Kode",
-          "kode"
+          "Kode"
         ],
         "extensions": [
           ".kode",
           ".kbc"
         ],
         "configuration": "./language-configuration.json",
-        "firstLine": "^#!/usr/bin/env kode",
+        "firstLine": "#!/usr/bin/env kode",
         "icon": {
           "light": "./icons/kode-language-icon.svg",
           "dark": "./icons/kode-language-icon.svg"

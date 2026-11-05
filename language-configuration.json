@@ -6,14 +6,12 @@
     "brackets": [
         ["{", "}"],
         ["[", "]"],
-        ["(", ")"],
-        ["<", ">"]
+        ["(", ")"]
     ],
     "autoClosingPairs": [
         ["{", "}"],
         ["[", "]"],
         ["(", ")"],
-        ["<", ">"],
         ["\"", "\""],
         ["'", "'"],
         ["`", "`"]
@@ -22,7 +20,6 @@
         ["{", "}"],
         ["[", "]"],
         ["(", ")"],
-        ["<", ">"],
         ["\"", "\""],
         ["'", "'"],
         ["`", "`"]
@@ -33,14 +30,14 @@
             "end": "^\\s*//\\s*#?endregion"
         }
     },
-    "wordPattern": "(-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\$\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\'\\\"\\,\\.\\<\\>\\/\\?\\s]+)",
+    "wordPattern": "[^\\s{}\\[\\](),:;@!|&^~?\\-\\r\\n\\t]+",
     "indentationRules": {
-        "increaseIndentPattern": "^\\s*(pub\\s+)?(async\\s+)?(fn|if|else|while|for|do|match|struct|enum|impl|trait|let|const|try)\\b.*[\\{\\[]\\s*$|^\\s*[\\{\\[].*[\\{\\[]\\s*$",
+        "increaseIndentPattern": "^\\s*(pub\\s+)?(func|let|const|if|else|while|for|do|match|struct|enum|impl|trait|try|spawn|defer|import|export)\\b(.*\\[\\{]\\s*)?$",
         "decreaseIndentPattern": "^\\s*[\\}\\]]"
     },
     "onEnterRules": [
         {
-            "beforeText": "^\\s*(?:pub\\s+)?(async\\s+)?(fn|if|else|while|for|do|match|struct|enum|impl|trait).*[\\{]\\s*$",
+            "beforeText": "^\\s*(?:(?:pub|priv|protected|internal)\\s+)?(?:async\\s+)?(?:func|let|const|if|else\\s+if|else|while|for|do|match|struct|enum|impl|trait|try|catch|finally|spawn|defer|import|export)\\b.*[\\{]\\s*$",
             "afterText": "^\\s*[\\}]",
             "action": {
                 "indent": "indent"

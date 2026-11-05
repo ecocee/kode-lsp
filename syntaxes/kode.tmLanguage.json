@@ -1,367 +1,422 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Kode",
-	"patterns": [
-		{
-			"include": "#comments"
-		},
-		{
-			"include": "#attributes"
-		},
-		{
-			"include": "#type-annotations"
-		},
-		{
-			"include": "#generics"
-		},
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		},
-		{
-			"include": "#numbers"
-		},
-		{
-			"include": "#functions"
-		},
-		{
-			"include": "#operators"
-		},
-		{
-			"include": "#constants"
-		},
-		{
-			"include": "#types"
-		}
-	],
-	"repository": {
-		"comments": {
-			"patterns": [
-				{
-					"name": "comment.line.double-slash.kode",
-					"match": "//.*$"
-				},
-				{
-					"name": "comment.block.kode",
-					"begin": "/\\*",
-					"end": "\\*/",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.comment.begin.kode"
-						}
-					},
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.definition.comment.end.kode"
-						}
-					}
-				},
-				{
-					"name": "comment.line.documentation.kode",
-					"match": "///.*$"
-				}
-			]
-		},
-		"attributes": {
-			"patterns": [
-				{
-					"name": "meta.attribute.kode",
-					"match": "#\\[([a-zA-Z_][a-zA-Z0-9_]*)\\]"
-				},
-				{
-					"name": "meta.decorator.kode",
-					"match": "@([a-zA-Z_][a-zA-Z0-9_]*)"
-				}
-			]
-		},
-		"type-annotations": {
-			"patterns": [
-				{
-					"name": "storage.type.annotation.kode",
-					"match": ":\\s*([a-zA-Z_][a-zA-Z0-9_]*|\\[|\\()"
-				},
-				{
-					"name": "storage.type.generic.kode",
-					"begin": "<",
-					"end": ">",
-					"patterns": [
-						{
-							"name": "entity.name.type.kode",
-							"match": "[a-zA-Z_][a-zA-Z0-9_]*"
-						}
-					]
-				},
-				{
-					"name": "storage.type.function.return.kode",
-					"match": "->\\s*([a-zA-Z_][a-zA-Z0-9_]*|\\[|\\()"
-				}
-			]
-		},
-		"keywords": {
-			"patterns": [
-				{
-					"name": "keyword.control.kode",
-					"match": "\\b(if|else if|else|while|for|do|break|continue|return|match|yield)\\b"
-				},
-				{
-					"name": "keyword.declaration.kode",
-					"match": "\\b(func|let|const|struct|enum|trait|impl|import|export|from|pub|priv|internal|protected)\\b"
-				},
-				{
-					"name": "keyword.control.async.kode",
-					"match": "\\b(async|await|defer|yield|async func)\\b"
-				},
-				{
-					"name": "keyword.control.flow.kode",
-					"match": "\\b(spawn|send|receive|select|lock|unlock|make|goto|switch|case|default)\\b"
-				},
-				{
-					"name": "keyword.operator.logical.kode",
-					"match": "\\b(and|or|not|true|false|null|undefined)\\b"
-				},
-				{
-					"name": "keyword.operator.type.kode",
-					"match": "\\b(type|alias|typeof|as|is|in)\\b"
-				},
-				{
-					"name": "keyword.exception.kode",
-					"match": "\\b(try|catch|throws|throw|finally|panic)\\b"
-				},
-				{
-					"name": "keyword.other.kode",
-					"match": "\\b(where|bound|static|self|super|this|new|delete|sizeof|alignof)\\b"
-				}
-			]
-		},
-		"strings": {
-			"patterns": [
-				{
-					"name": "string.quoted.double.kode",
-					"begin": "\"",
-					"end": "\"",
-					"patterns": [
-						{
-							"name": "constant.character.escape.kode",
-							"match": "\\\\[\\\\\"nrtbfv0]"
-						},
-						{
-							"name": "constant.character.escape.unicode.kode",
-							"match": "\\\\u\\{[0-9a-fA-F]+\\}"
-						},
-						{
-							"name": "variable.interpolation.kode",
-							"begin": "\\$\\{",
-							"end": "\\}",
-							"patterns": [
-								{
-									"include": "#keywords"
-								},
-								{
-									"include": "#numbers"
-								},
-								{
-									"include": "#operators"
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "string.quoted.single.kode",
-					"begin": "'",
-					"end": "'",
-					"patterns": [
-						{
-							"name": "constant.character.escape.kode",
-							"match": "\\\\[\\\\']"
-						}
-					]
-				},
-				{
-					"name": "string.template.kode",
-					"begin": "`",
-					"end": "`",
-					"patterns": [
-						{
-							"name": "constant.character.escape.kode",
-							"match": "\\\\."
-						},
-						{
-							"name": "variable.interpolation.kode",
-							"begin": "\\$\\{",
-							"end": "\\}",
-							"patterns": [
-								{
-									"include": "#keywords"
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "string.regex.kode",
-					"begin": "r\"",
-					"end": "\"",
-					"patterns": [
-						{
-							"name": "constant.character.escape.kode",
-							"match": "\\\\."
-						}
-					]
-				}
-			]
-		},
-		"numbers": {
-			"patterns": [
-				{
-					"name": "constant.numeric.hex.kode",
-					"match": "\\b0[xX][0-9a-fA-F]+[uUlL]*\\b"
-				},
-				{
-					"name": "constant.numeric.binary.kode",
-					"match": "\\b0[bB][01]+[uUlL]*\\b"
-				},
-				{
-					"name": "constant.numeric.octal.kode",
-					"match": "\\b0[oO][0-7]+[uUlL]*\\b"
-				},
-				{
-					"name": "constant.numeric.float.kode",
-					"match": "\\b\\d+\\.\\d+([eE][+-]?\\d+)?([fFdD])?\\b"
-				},
-				{
-					"name": "constant.numeric.integer.kode",
-					"match": "\\b\\d+[uUlL]*\\b"
-				}
-			]
-		},
-		"generics": {
-			"patterns": [
-				{
-					"name": "meta.generic.kode",
-					"begin": "<",
-					"end": ">",
-					"patterns": [
-						{
-							"include": "#types"
-						},
-						{
-							"include": "#generics"
-						},
-						{
-							"include": "#operators"
-						},
-						{
-							"name": "keyword.operator.generic.kode",
-							"match": ","
-						}
-					]
-				}
-			]
-		},
-		"functions": {
-			"patterns": [
-				{
-					"name": "entity.name.function.kode",
-					"match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*(?=\\<.*\\s*\\(|\\()",
-					"captures": {
-						"1": {
-							"name": "entity.name.function.kode"
-						}
-					}
-				},
-				{
-					"name": "entity.name.method.kode",
-					"match": "\\.([a-zA-Z_][a-zA-Z0-9_]*)\\s*(?=\\()"
-				},
-				{
-					"name": "entity.name.macro.kode",
-					"match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)!"
-				}
-			]
-		},
-		"operators": {
-			"patterns": [
-				{
-					"name": "keyword.operator.range.kode",
-					"match": "(\\.\\.=|\\.\\.|::)"
-				},
-				{
-					"name": "keyword.operator.arrow.kode",
-					"match": "(->|=>|<-)"
-				},
-				{
-					"name": "keyword.operator.arithmetic.kode",
-					"match": "[+\\-*/%^]"
-				},
-				{
-					"name": "keyword.operator.comparison.kode",
-					"match": "(==|!=|<=|>=|<|>)"
-				},
-				{
-					"name": "keyword.operator.logical.kode",
-					"match": "(&&|\\|\\||!|and|or|not)"
-				},
-				{
-					"name": "keyword.operator.bitwise.kode",
-					"match": "(&|\\||\\^|~|<<|>>)"
-				},
-				{
-					"name": "keyword.operator.assignment.kode",
-					"match": "(=|\\+=|-=|\\*=|/=|%=|&=|\\|=|\\^=|<<=|>>=)"
-				},
-				{
-					"name": "keyword.operator.pointer.kode",
-					"match": "(&|\\*|\\?)"
-				},
-				{
-					"name": "punctuation.separator.kode",
-					"match": "[;,.]"
-				},
-				{
-					"name": "punctuation.bracket.kode",
-					"match": "[()\\[\\]{}]"
-				}
-			]
-		},
-		"constants": {
-			"patterns": [
-				{
-					"name": "constant.language.kode",
-					"match": "\\b(true|false|null|void|undefined|NaN|Infinity)\\b"
-				},
-				{
-					"name": "variable.language.kode",
-					"match": "\\b(this|self|super|Self)\\b"
-				},
-				{
-					"name": "constant.other.result.kode",
-					"match": "\\b(Result|Option|Some|None|Ok|Err)\\b"
-				}
-			]
-		},
-		"types": {
-			"patterns": [
-				{
-					"name": "storage.type.primitive.kode",
-					"match": "\\b(int|i8|i16|i32|i64|uint|u8|u16|u32|u64|float|f32|f64|bool|string|char|byte|any|auto)\\b"
-				},
-				{
-					"name": "storage.type.kode",
-					"match": "\\b(void|never|dynamic|static|const)\\b"
-				},
-				{
-					"name": "entity.name.type.class.kode",
-					"match": "\\b([A-Z][a-zA-Z0-9_]*)\\b"
-				},
-				{
-					"name": "storage.modifier.type.kode",
-					"match": "\\b(mut|ref|ptr|&)\\b"
-				}
-			]
-		}
-	},
-	"scopeName": "source.kode"
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Kode",
+  "scopeName": "source.kode",
+  "patterns": [
+    { "include": "#strings" },
+    { "include": "#attributes" },
+    { "include": "#comments" },
+    { "include": "#numbers" },
+    { "include": "#imports" },
+    { "include": "#structs-and-enums" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#functions" },
+    { "include": "#generics" },
+    { "include": "#constants" },
+    { "include": "#operators" },
+    { "include": "#punctuation" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.kode",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.kode",
+          "begin": "/\\*",
+          "end": "\\*/"
+        },
+        {
+          "name": "comment.line.documentation.kode",
+          "match": "///.*$"
+        },
+        {
+          "name": "comment.block.documentation.kode",
+          "begin": "/\\*\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "attributes": {
+      "patterns": [
+        {
+          "name": "meta.attribute.kode",
+          "match": "#\\[\\s*([a-zA-Z_][a-zA-Z0-9_]*)(?:\\s*\\([^)]*\\))?\\s*\\]"
+        },
+        {
+          "name": "meta.decorator.kode",
+          "match": "@[a-zA-Z_][a-zA-Z0-9_]*"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.kode",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.kode",
+              "match": "\\\\[\"nrtbfv0xX}]"
+            },
+            {
+              "name": "constant.character.escape.hex.kode",
+              "match": "\\\\[xX][0-9a-fA-F]{2}"
+            },
+            {
+              "name": "constant.character.escape.unicode.kode",
+              "match": "\\\\u\\{[0-9a-fA-F]+\\}"
+            },
+            {
+              "name": "variable.interpolation.kode",
+              "begin": "\\$\\{",
+              "end": "\\}",
+              "patterns": [
+                { "include": "#operators" },
+                { "include": "#keywords" },
+                { "include": "#numbers" },
+                { "include": "#punctuation" }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.kode",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.kode",
+              "match": "\\\\['\"rtnbfv0xX}]"
+            }
+          ]
+        },
+        {
+          "name": "string.template.kode",
+          "begin": "`",
+          "end": "`",
+          "patterns": [
+            {
+              "name": "constant.character.escape.kode",
+              "match": "\\\\[`$]"
+            },
+            {
+              "name": "variable.interpolation.kode",
+              "begin": "\\$\\{",
+              "end": "\\}",
+              "patterns": [
+                { "include": "#operators" },
+                { "include": "#keywords" },
+                { "include": "#numbers" },
+                { "include": "#punctuation" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "imports": {
+      "patterns": [
+        {
+          "begin": "(?i)\\b(import)\\b\\s+",
+          "beginCaptures": {
+            "1": { "name": "keyword.declaration.import.kode" }
+          },
+          "end": "$",
+          "contentName": "entity.name.import.kode",
+          "patterns": [
+            {
+              "name": "entity.name.import.path.kode",
+              "match": "\"([^\"\\n]+)\""
+            },
+            {
+              "name": "keyword.declaration.kode",
+              "match": "\\b( as |from|pub|priv)\\b"
+            },
+            {
+              "name": "entity.name.import.alias.kode",
+              "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+            }
+          ]
+        },
+        {
+          "begin": "(?i)\\b(export)\\b\\s+",
+          "beginCaptures": {
+            "1": { "name": "keyword.declaration.export.kode" }
+          },
+          "end": "$",
+          "patterns": [
+            {
+              "name": "keyword.declaration.kode",
+              "match": "\\b( pub |priv )\\b"
+            },
+            {
+              "name": "entity.name.export.kode",
+              "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+            }
+          ]
+        },
+        {
+          "name": "entity.name.import.module.kode",
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z0-9_]*)*\\b"
+        }
+      ]
+    },
+    "structs-and-enums": {
+      "patterns": [
+        {
+          "name": "meta.struct.kode",
+          "begin": "(?i)\\b(struct)\\s+",
+          "beginCaptures": {
+            "1": { "name": "storage.type.struct.kode" }
+          },
+          "end": "\\{",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.block.begin.kode" }
+          },
+          "contentName": "entity.name.type.struct.kode",
+          "patterns": [
+            {
+              "name": "entity.name.type.struct.kode",
+              "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+            }
+          ]
+        },
+        {
+          "name": "meta.enum.kode",
+          "begin": "(?i)\\b(enum)\\s+",
+          "beginCaptures": {
+            "1": { "name": "storage.type.enum.kode" }
+          },
+          "end": "\\{",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.block.begin.kode" }
+          },
+          "contentName": "entity.name.type.enum.kode",
+          "patterns": [
+            {
+              "name": "entity.name.type.enum.kode",
+              "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+            }
+          ]
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.conditional.kode",
+          "match": "\\b(if|else if|else|match|yield)\\b"
+        },
+        {
+          "name": "keyword.control.iteration.kode",
+          "match": "\\b(while|for|do|break|continue)\\b"
+        },
+        {
+          "name": "keyword.control.return.kode",
+          "match": "\\b(return)\\b"
+        },
+        {
+          "name": "keyword.declaration.kode",
+          "match": "\\b(func|let|const|struct|enum|trait|impl|pub|priv|internal|protected)\\b"
+        },
+        {
+          "name": "keyword.declaration.import.kode",
+          "match": "\\bimport\\b"
+        },
+        {
+          "name": "keyword.declaration.export.kode",
+          "match": "\\bexport\\b"
+        },
+        {
+          "name": "keyword.operator.type.kode",
+          "match": "\\b(type|alias|typeof|as|is|in)\\b"
+        },
+        {
+          "name": "keyword.exception.kode",
+          "match": "\\b(try|catch|throw|finally|panic)\\b"
+        },
+        {
+          "name": "keyword.other.kode",
+          "match": "\\b(this|super|new|delete|sizeof|alignof|self)\\b"
+        },
+        {
+          "name": "constant.language.kode",
+          "match": "\\b(true|false|null|void|undefined)\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "storage.type.primitive.kode",
+          "match": "\\b(int|i8|i16|i32|i64|uint|u8|u16|u32|u64|float|f32|f64|bool|string|char|byte|any|usize|isize)\\b"
+        },
+        {
+          "name": "storage.type.kode",
+          "match": "\\b(void|never)\\b"
+        },
+        {
+          "name": "entity.name.type.kode",
+          "match": "\\b[A-Z][a-zA-Z0-9_]*\\b"
+        },
+        {
+          "name": "storage.modifier.kode",
+          "match": "\\b(mut|ref|ptr)\\b"
+        },
+        {
+          "name": "keyword.operator.type.kode",
+          "match": "\\bptr\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "entity.name.function.kode",
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\s*(?=\\()"
+        },
+        {
+          "name": "entity.name.method.kode",
+          "match": "\\.[a-zA-Z_][a-zA-Z0-9_]*\\s*(?=\\()"
+        },
+        {
+          "name": "entity.name.macro.kode",
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\!"
+        },
+        {
+          "name": "meta.function.kode",
+          "begin": "\\b(func)\\b\\s+",
+          "beginCaptures": {
+            "1": { "name": "storage.type.function.kode" }
+          },
+          "end": "\\{",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.block.begin.kode" }
+          },
+          "contentName": "meta.function.body.kode",
+          "patterns": [
+            { "include": "#generics" }
+          ]
+        }
+      ]
+    },
+    "generics": {
+      "patterns": [
+        {
+          "name": "meta.generic.kode",
+          "begin": "<",
+          "end": ">",
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.generic.begin.kode" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.generic.end.kode" }
+          },
+          "patterns": [
+            { "include": "#generics" },
+            {
+              "name": "keyword.operator.generic.kode",
+              "match": ","
+            },
+            { "include": "#operators" },
+            { "include": "#types" },
+            { "include": "#constants" },
+            {
+              "name": "entity.name.type.parameter.kode",
+              "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+            }
+          ]
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.kode",
+          "match": "\\b(true|false|null|void|undefined)\\b"
+        },
+        {
+          "name": "variable.language.kode",
+          "match": "\\b(this|super|Self)\\b"
+        },
+        {
+          "name": "constant.other.result.kode",
+          "match": "\\b(Result|Option|Some|None|Ok|Err)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.range.kode",
+          "match": "\\.\\.|\\.\\.="
+        },
+        {
+          "name": "keyword.operator.arrow.kode",
+          "match": "->|<-"
+        },
+        {
+          "name": "keyword.operator.arrow.return.kode",
+          "match": "=>"
+        },
+        {
+          "name": "keyword.operator.scope.kode",
+          "match": "::"
+        },
+        {
+          "name": "keyword.operator.arithmetic.kode",
+          "match": "[+\\-*/%]"
+        },
+        {
+          "name": "keyword.operator.increment.kode",
+          "match": "\\+\\+|\\-\\-"
+        },
+        {
+          "name": "keyword.operator.comparison.kode",
+          "match": "==|!=|<=|>=|<|>"
+        },
+        {
+          "name": "keyword.operator.logical.kode",
+          "match": "&&|\\|\\||!|\\b(and|or|not)\\b"
+        },
+        {
+          "name": "keyword.operator.bitwise.kode",
+          "match": "&|\\||\\^|~|<<|>>"
+        },
+        {
+          "name": "keyword.operator.assignment.kode",
+          "match": "=|\\+=|-=|\\*=|/=|%=|&=|\\|=|\\^=|<<=|>>="
+        },
+        {
+          "name": "keyword.operator.ternary.kode",
+          "match": "\\?\\s|\\s\\:"
+        },
+        {
+          "name": "keyword.operator.pointer.kode",
+          "match": "&|\\*|\\?"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.separator.kode",
+          "match": "[;,]"
+        },
+        {
+          "name": "punctuation.bracket.kode",
+          "match": "[\\[\\](){}]"
+        },
+        {
+          "name": "punctuation.accessor.kode",
+          "match": "\\."
+        }
+      ]
+    }
+  }
 }

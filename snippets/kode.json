@@ -2,29 +2,11 @@
 	"Function": {
 		"prefix": "func",
 		"body": [
-			"func ${1:functionName}(${2:params}) -> ${3:returnType} {",
+			"func ${1:name}(${2:params}) -> ${3:returnType} {",
 			"\t${0}",
 			"}"
 		],
-		"description": "Define a new function"
-	},
-	"Generic Function": {
-		"prefix": "funcg",
-		"body": [
-			"func ${1:functionName}<${2:T}>(${3:params}: $2) -> ${4:returnType} {",
-			"\t${0}",
-			"}"
-		],
-		"description": "Define a generic function"
-	},
-	"Async Function": {
-		"prefix": "funcasync",
-		"body": [
-			"async func ${1:functionName}(${2:params}) -> ${3:returnType} {",
-			"\t${0}",
-			"}"
-		],
-		"description": "Define an async function"
+		"description": "Define a function"
 	},
 	"Main Function": {
 		"prefix": "main",
@@ -34,6 +16,15 @@
 			"}"
 		],
 		"description": "Define main function"
+	},
+	"Generic Function": {
+		"prefix": "funcg",
+		"body": [
+			"func ${1:name}<${2:T}>(${3:params}) -> ${4:returnType} {",
+			"\t${0}",
+			"}"
+		],
+		"description": "Define a generic function"
 	},
 	"If Statement": {
 		"prefix": "if",
@@ -76,7 +67,7 @@
 	"For-In Loop": {
 		"prefix": "forin",
 		"body": [
-			"for (${1:item} in ${2:collection}) {",
+			"for (let ${1:item} in ${2:collection}) {",
 			"\t${0}",
 			"}"
 		],
@@ -162,7 +153,7 @@
 			"\t${4:Variant2}(${5:type})",
 			"}"
 		],
-		"description": "Define an enum with associated values"
+		"description": "Enum with associated values"
 	},
 	"Trait Definition": {
 		"prefix": "trait",
@@ -194,13 +185,13 @@
 		"body": [
 			"try {",
 			"\t${1}",
-			"} catch {",
+			"} catch ${2:error} {",
 			"\t${0}",
 			"}"
 		],
 		"description": "Try-catch block"
 	},
-	"Result Type": {
+	"Result Type Function": {
 		"prefix": "funcresult",
 		"body": [
 			"func ${1:functionName}(${2:params}) -> Result<${3:T}, ${4:E}> {",
@@ -209,7 +200,7 @@
 		],
 		"description": "Function returning Result type"
 	},
-	"Option Type": {
+	"Option Type Function": {
 		"prefix": "funcoption",
 		"body": [
 			"func ${1:functionName}(${2:params}) -> Option<${3:T}> {",
@@ -223,11 +214,6 @@
 		"body": "let ${1:varName} = ${0:value}",
 		"description": "Define a variable"
 	},
-	"Let Mutable": {
-		"prefix": "letmut",
-		"body": "let mut ${1:varName} = ${0:value}",
-		"description": "Define a mutable variable"
-	},
 	"Const Variable": {
 		"prefix": "const",
 		"body": "const ${1:constName} = ${0:value}",
@@ -238,122 +224,50 @@
 		"body": "type ${1:TypeName} = ${0:ExistingType}",
 		"description": "Create a type alias"
 	},
-	"Import Named": {
+	"Import Module": {
 		"prefix": "import",
-		"body": "import ${1:{ exported }} from \"${2:module}\"",
-		"description": "Import items from module"
+		"body": "import \"${1:module}\" as ${2:alias}",
+		"description": "Import a module"
 	},
-	"Import All": {
-		"prefix": "importall",
-		"body": "import * from \"${1:module}\"",
-		"description": "Import all from module"
-	},
-	"Import As": {
-		"prefix": "importas",
-		"body": "import ${1:moduleName} from \"${2:./path}\"",
-		"description": "Import module with alias"
+	"Import Items": {
+		"prefix": "importfrom",
+		"body": "import ${1:Name} from \"${2:module}\"",
+		"description": "Import an item from a module"
 	},
 	"Export": {
 		"prefix": "export",
-		"body": "export ${1:func|struct|enum|const} ${2:name} ${0}",
-		"description": "Export item"
+		"body": "export ${1:Name}",
+		"description": "Export an item"
 	},
 	"Array Map": {
 		"prefix": "map",
-		"body": "map(${1:array}, func(${2:x}) { ${0:x * 2} })",
+		"body": "map(${1:array}, func(${2:x}) { ${0} })",
 		"description": "Map over array"
 	},
 	"Array Filter": {
 		"prefix": "filter",
-		"body": "filter(${1:array}, func(${2:x}) { ${0:x % 2 == 0}} )",
+		"body": "filter(${1:array}, func(${2:x}) { ${0} })",
 		"description": "Filter array"
 	},
 	"Array Reduce": {
 		"prefix": "reduce",
-		"body": "reduce(${1:array}, ${2:initial}, func(${3:acc}, ${4:x}) { ${0:acc + x}} )",
+		"body": "reduce(${1:array}, ${2:initial}, func(${3:acc}, ${4:x}) { ${0} })",
 		"description": "Reduce array"
 	},
 	"Destructuring": {
 		"prefix": "destruct",
 		"body": "let (${1:a}, ${2:b}) = ${0:tuple}",
-		"description": "Destructure tuple or array"
-	},
-	"Destructuring Pattern": {
-		"prefix": "destructpat",
-		"body": [
-			"match (${1:value}) {",
-			"\t${2:Type} { ${3:field}: value } => ${0:value}",
-			"}"
-		],
-		"description": "Destructure with pattern matching"
-	},
-	"Spawn Goroutine": {
-		"prefix": "spawn",
-		"body": [
-			"spawn {",
-			"\t${0}",
-			"}"
-		],
-		"description": "Spawn a goroutine"
-	},
-	"Channel Create": {
-		"prefix": "channel",
-		"body": "let ${1:chan} = make(Channel<${2:int}>)",
-		"description": "Create a channel"
-	},
-	"Channel Send": {
-		"prefix": "send",
-		"body": "send(${1:channel}, ${0:value})",
-		"description": "Send value to channel"
-	},
-	"Channel Receive": {
-		"prefix": "recv",
-		"body": "let ${1:value} = receive(${2:channel})",
-		"description": "Receive from channel"
-	},
-	"Select Statement": {
-		"prefix": "select",
-		"body": [
-			"select {",
-			"\t${1:val}: ${2:channel1} => ${3:handle},",
-			"\t${4:val}: ${5:channel2} => ${0:handle}",
-			"}"
-		],
-		"description": "Select from multiple channels"
-	},
-	"Mutex Lock": {
-		"prefix": "mutex",
-		"body": [
-			"let ${1:mutex} = make(Mutex<${2:T}>)",
-			"lock($1)",
-			"${0:// critical section}",
-			"unlock($1)"
-		],
-		"description": "Create and use mutex"
-	},
-	"Defer Statement": {
-		"prefix": "defer",
-		"body": [
-			"defer {",
-			"\t${0}",
-			"}"
-		],
-		"description": "Defer execution until function exit"
-	},
-	"Await Expression": {
-		"prefix": "await",
-		"body": "await ${0:promise}",
-		"description": "Wait for async operation"
+		"description": "Destructure tuple"
 	},
 	"Print": {
 		"prefix": "print",
 		"body": "print(${0})",
 		"description": "Print to console"
 	},
-	"Println": {
+	"Print Line": {
 		"prefix": "println",
 		"body": "print(\"${0}\")",
-		"description": "Print line"
+		"description": "Print line to console"
 	},
 	"Macro Invocation": {
 		"prefix": "macro",
@@ -377,10 +291,24 @@
 	"Higher-Order Function": {
 		"prefix": "hof",
 		"body": [
-			"func ${1:apply}(f: (${2:T}) -> ${3:U}, ${4:value}: $2) -> $3 {",
-			"\treturn f($4)",
+			"func ${1:name}(f: (${2:T}) -> ${3:U}, ${4:value}: ${2:T}) -> ${3:U} {",
+			"\treturn f(${4:value})",
 			"}"
 		],
 		"description": "Higher-order function template"
+	},
+	"Throw": {
+		"prefix": "throw",
+		"body": "throw ${1:error}",
+		"description": "Throw an error"
+	},
+	"Defer": {
+		"prefix": "defer",
+		"body": [
+			"defer {",
+			"\t${0}",
+			"}"
+		],
+		"description": "Defer execution until function exit"
 	}
 }

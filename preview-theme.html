@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kode Style — dark theme preview</title>
+<style>
+  :root{
+    --bg:#0d1117; --fg:#c9d1d9;
+    --keyword:#ff7b72; --decl:#ffa657; --type:#ffa657;
+    --str:#a5d6ff; --num:#79c0ff; --comment:#8b949e;
+    --fn:#d2a8ff; --macro:#ffa657; --op:#ffa657;
+    --const:#d2a8ff; --mod:#79c0ff; --attr:#f0883e;
+    --interp:#79c0ff; --escape:#f0883e; --escapehex:#f0883e;
+    --imp:#d2a6ff; --alias:#ff7b72;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    padding:24px; max-width:920px;
+  }
+  h1{font-size:18px; margin:0 0 10px; color:var(--fg)}
+  .subtitle{color:#8b949e; margin:0 0 18px}
+  .sample{
+    background:#010409; border:1px solid #30363d; border-radius:8px;
+    padding:14px 16px; white-space:pre; overflow:auto;
+  }
+  .cm{color:var(--comment); font-style:italic}
+  .kw{color:var(--keyword); font-weight:600}
+  .decl{color:var(--decl); font-weight:600}
+  .typ{color:var(--type)}
+  .str{color:var(--str)}
+  .num{color:var(--num)}
+  .fn{color:var(--fn); font-weight:600}
+  .method{color:var(--fn); font-weight:600}
+  .macro{color:var(--macro)}
+  .op{color:var(--op); font-weight:600}
+  .const{color:var(--const)}
+  .mod{color:var(--mod)}
+  .attr{color:var(--attr)}
+  .interp{color:var(--interp)}
+  .esc{color:var(--escape)}
+  .eschex{color:var(--escapehex)}
+  .imp{color:var(--imp); font-weight:600}
+  .alias{color:var(--alias)}
+  .gen{color:var(--mod)}
+  .punc{color:#8b949e}
+  .pipe{display:inline-block}
+  table{border-collapse:collapse; width:100%; margin-top:14px; color:#8b949e}
+  th,td{border:1px solid #30363d; padding:6px 10px; text-align:left; font-size:12px}
+  th{background:#0d1117; color:#c9d1d9}
+</style>
+</head>
+<body>
+  <h1>Kode Style <span style="color:#8b949e">(dark)</span></h1>
+  <p class="subtitle">Token preview of <code>themes/kode-style.json</code> over representative Kode code.</p>
+
+  <pre class="sample"><span class="imp">import</span> <span class="str">"os"</span> <span class="alias">as</span> <span class="alias">os</span>
+<span class="imp">import</span> <span class="alias">sqrt</span> <span class="alias">from</span> <span class="str">"math"</span>
+<span class="attr">#[inline]</span>
+<span class="decl">func</span> <span class="fn">hypot</span>(x: <span class="typ">f64</span>, y: <span class="typ">f64</span>) -> <span class="typ">f64</span> {
+    <span class="kw">let</span> <span class="interp">sq</span> = <span class="fn">sqrt</span>(x * x + y * y)  <span class="cm">// uses the built-in sqrt</span>
+    <span class="kw">return if</span> (<span class="interp">sq</span> <span class="op">></span> <span class="num">0.0</span>) { <span class="interp">sq</span> } <span class="kw">else</span> { <span class="num">0.0</span> }
+}
+<span class="decl">struct</span> <span class="typ">Point</span>&lt;<span class="gen">T</span>&gt; {
+    x: <span class="typ">T</span>,
+    y: <span class="typ">T</span>,
+}
+<span class="decl">enum</span> <span class="typ">Option</span>&lt;<span class="gen">T</span>&gt; {
+    <span class="const">Some</span>(<span class="gen">T</span>),
+    <span class="const">None</span>,
+}
+<span class="kw">match</span> (<span class="interp">p</span>) {
+    <span class="typ">Point</span> { x: <span class="interp">a</span>, y: <span class="interp">b</span> } <span class="kw">if</span> <span class="interp">a</span> <span class="op">></span> <span class="num">0</span> =&gt; <span class="fn">print</span>(<span class="str">"pos "</span> <span class="op">+</span> <span class="interp">a</span>),
+    _ =&gt; <span class="fn">print</span>(<span class="str">"other"</span>),
+}
+<span class="decl">func</span> <span class="fn">main</span>() {
+    <span class="kw">let</span> <span class="interp">path</span> = <span class="fn">os</span>::<span class="fn">join</span>(<span class="str">"/tmp"</span>, <span class="str">"kode"</span>)  <span class="cm">/* module path demo */</span>
+    <span class="kw">let</span> <span class="interp">escaped</span> = <span class="str">"line1\nline2\t\0end"</span>
+    <span class="kw">let</span> <span class="interp">hex</span> = <span class="str">"\x48\x65\x6c\x6c\x6f"</span>
+    <span class="kw">let</span> <span class="interp">uni</span>  = <span class="str">"\u{1F600}"</span>
+    <span class="fn">print</span>(<span class="interp">path</span>, <span class="interp">escaped</span>, <span class="interp">hex</span>, <span class="interp">uni</span>)
+    <span class="op">...</span>  <span class="cm">// and so on</span>
+}</pre>
+
+  <table>
+    <thead><tr><th>Scope</th><th>Sample token</th><th>Color</th></tr></thead>
+    <tbody>
+      <tr><td><code class="imp">keyword.declaration.import.kode</code></td><td><span class="imp">import</span></td><td>#d2a6ff bold</td></tr>
+      <tr><td><code class="alias">entity.name.import.alias.kode</code></td><td><span class="alias">os, sqrt</span></td><td>#ff7b72</td></tr>
+      <tr><td><code class="str">string.quoted.double.kode</code></td><td><span class="str">"os"</span></td><td>#a5d6ff</td></tr>
+      <tr><td><code class="interp">variable.interpolation.kode</code></td><td><span class="interp">sq, a, b</span></td><td>#79c0ff</td></tr>
+      <tr><td><code class="esc">constant.character.escape.kode</code></td><td><span class="esc">\n \t \0</span></td><td>#f0883e</td></tr>
+      <tr><td><code class="eschex">constant.character.escape.hex.kode</code></td><td><span class="eschex">\x48</span></td><td>#f0883e</td></tr>
+      <tr><td><code class="fn">entity.name.function.kode</code></td><td><span class="fn">hypot, print</span></td><td>#d2a8ff bold</td></tr>
+      <tr><td><code class="method">entity.name.method.kode</code></td><td><span class="method">.join</span></td><td>#d2a8ff bold</td></tr>
+      <tr><td><code class="macro">entity.name.macro.kode</code></td><td><span class="macro">call!</span></td><td>#ffa657</td></tr>
+      <tr><td><code class="const">constant.other.result.kode</code></td><td><span class="const">Some, None</span></td><td>#d2a8ff</td></tr>
+      <tr><td><code class="gen">entity.name.type.parameter.kode</code></td><td><span class="gen">T</span></td><td>#79c0ff bold</td></tr>
+      <tr><td><code class="op">keyword.operator.*</code></td><td><span class="op">* > + =&gt; :: ..</span></td><td>#ffa657 bold</td></tr>
+      <tr><td><code class="decl">keyword.declaration.kode</code></td><td><span class="decl">func struct enum impl</span></td><td>#ffa657 bold</td></tr>
+      <tr><td><code class="attr">meta.attribute.kode</code></td><td><span class="attr">#[inline]</span></td><td>#f0883e</td></tr>
+      <tr><td><code class="cm">comment.line.double-slash.kode</code></td><td><span class="cm">// uses the built-in sqrt</span></td><td>#8b949e italic</td></tr>
+      <tr><td><code class="punc">punctuation.*</code></td><td><span class="punc">, { } ( )</span></td><td>#8b949e</td></tr>
+    </tbody>
+  </table>
+
+  <p class="subtitle">Theme is purely additive: it defines a dark palette, editor canvas colors, and token colors. It does not force a light icon set or override workspace colors, so enabling/disabling it should not flip unrelated UI.</p>
+</body>
+</html>
