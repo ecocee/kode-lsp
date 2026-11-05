@@ -81,5 +81,8 @@
   },
   "scripts": {
     "test": "node ./test/index.js"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^4.1.0"
   }
 }
